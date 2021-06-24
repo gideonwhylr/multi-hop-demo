@@ -1,0 +1,98 @@
+---
+{
+    "stream": {
+        "$id": "multi-hop-stream",
+        "source": "knowledgeGraph",
+        "destination": "pages",
+        "fields": [
+            "id", 
+            "uid", 
+            "name", 
+            "c_parent.name",
+            "c_parent.c_parent.name",
+            "c_parent.c_parent.c_parent.name",
+            "c_parent.c_parent.c_parent.c_parent.name", 
+            "c_parent.c_parent.c_parent.c_parent.c_parent.name", 
+            "c_parent.c_parent.c_parent.c_parent.c_parent.c_parent.name", 
+            "c_parent.c_parent.c_parent.c_parent.c_parent.c_parent.c_parent.name" 
+        ], 
+        "filter" : {
+            "savedFilterIds": [ "594672855"]
+        }
+    },
+    "urlFormat": "{{name}}"
+}
+---
+
+
+<!doctype html>
+<html>
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container flex flex-col"> 
+            <div class="text-lg mb-4">My name is: <span class="text-gray-500 mb-4">{{name}} </span> </div>
+            <br>
+            {{#each c_parent}} 
+                {{#with name}}
+                    <script>console.log('{{this}}')</script>
+                    <div class="text-xl  mb-4" > My parent's name is: <span class="text-red-500 mb-4">{{name}} </span></div>
+                    <br>
+                {{/with}} 
+                {{#each this}}
+                        {{#each this}}
+                            {{#with name}}
+                                <script>console.log('{{this}}')</script>
+                                <div class="text-2xl  mb-4" > My grandparent's name is:<span class="text-yellow-500 mb-4">{{name}} </span> </div> <br>
+                            {{/with}}                
+                            {{#each this}}
+                                {{#each this}}
+                                    {{#with name}}
+                                        <script>console.log('{{this}}')</script>
+                                        <div class="text-3xl mb-4"> My Great-grandparent's name is:<span class="text-green-500 mb-4">{{name}} </span> </div><br>
+                                    {{/with}}                             
+                                    {{#each this}}
+                                        {{#each this}}
+                                            {{#with name}}
+                                                <script>console.log('{{this}}')</script>
+                                                <div class="text-4xl mb-4" > My Great-great-grandparent's name is:<span class="text-blue-500 mb-4">{{name}} </span> </div><br>
+                                            {{/with}}                                      
+                                            {{#each this}}
+                                                {{#each this}}
+                                                    {{#with name}}
+                                                        <script>console.log('{{this}}')</script>
+                                                        <div class="text-5xl  mb-4" > My Great-great-great-grandparent's name is:<span class="text-indigo-500 mb-4">{{name}} </span> </div><br>
+                                                    {{/with}}  
+                                                    {{#each this}}
+                                                        {{#each this}}
+                                                            {{#with name}}
+                                                                <script>console.log('{{this}}')</script>
+                                                                <div class="text-6xl  mb-4"> My Great-great-great-great-grandparent's name is:<span class="text-purple-500 mb-4">{{name}} </span> </div><br>
+                                                            {{/with}}
+                                                            {{#each this}}
+                                                                {{#each this}}
+                                                                    {{#with name}}
+                                                                        <script>console.log('{{this}}')</script>
+                                                                        <div class="text-7xl  mb-4"> My Great-great-great-great-great-grandparent's name is:<span class="text-pink-500 mb-4">{{name}} </span> </div><br>
+                                                                    {{/with}}  
+                                                                {{/each}}
+                                                            {{/each}}
+
+
+                                                        {{/each}}
+                                                    {{/each}}
+                                                {{/each}}
+                                            {{/each}}
+                                        {{/each}}
+                                    {{/each}}
+                                {{/each}}                        
+                            {{/each}}
+                        {{/each}}            
+                {{/each}}
+            {{/each}} 
+        </div>
+    </body>
+</html>
